@@ -1,0 +1,35 @@
+<%- include ("partials/header.ejs")%>
+
+<div class="container">
+    <% if (Object.keys(workList).length > 0 || Title === "You can contact us:" ) {%>
+        <h1><%= Title  %></h1>
+        <% } else {%>
+        <h1>Welcome to our ToDo list. Please input your values!</h1>
+        <% } %>
+
+    
+    <% if (Title === "You can contact us:" ) {%>
+        <h4>Email: amanolake@gmail.com</h4>
+        <h4>Tel: 069143261</h4>
+    <% } else {%>
+        <ul>
+            <% for (key = 0; key< Object.keys(workList).length; key++) {%>
+            <% if (workList[Object.keys(workList)[key]][Object.keys(workList[Object.keys(workList)[key]])] == "Done") { %>
+                <h4><a href="<%= linkForCheck  %><%= Object.keys(workList)[key] %>"> ☑ </a><s> <%= Object.keys(workList[Object.keys(workList)[key]]) %></s></h4>
+                <%} else {%>
+                <h4><a href="<%= linkForCheck  %><%= Object.keys(workList)[key] %>"> ☐ </a> <%= Object.keys(workList[Object.keys(workList)[key]]) %></h4>
+                <% } %>
+        
+            <%}; %>
+    <h4>
+        <form action="<%= linkForAdd %>" method="POST">     
+        <input type="submit" value="OK" hidden>
+        <input type="text" name="task" placeholder="Type a new task">
+        
+    </form>
+    </h4>
+    <% } %>
+    </ul>
+</div>
+
+<%- include ("partials/footer.ejs") %>
